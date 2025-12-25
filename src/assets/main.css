@@ -1,0 +1,18 @@
+@import "./base.css";
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+
+
+/* main.css */
+
+.p-dropdown .p-dropdown-label {
+  padding: 0 !important;
+}
+
+.p-multiselect .p-multiselect-label {
+  padding: 0 !important;
+}
+
+.p-select .p-select-label {
+  padding: 0 !important;
+}
