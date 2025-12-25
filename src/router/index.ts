@@ -25,6 +25,26 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/SuperFormTest.vue'),
     },
+    {
+      path: '/level1',
+      name: 'level1',
+      component: () => import('../views/example/Level1.vue'),
+    },
+    {
+      path: '/level1/level2',
+      name: 'level2',
+      component: () => import('../views/example/Level2.vue'),
+    },
+    {
+      path: '/level1/level2/level3',
+      name: 'level3',
+      component: () => import('../views/example/Level3.vue'),
+    },
+    {
+      path: '/table',
+      name: 'table',
+      component: () => import('../views/SuperTableTest.vue'),
+    },
   ],
 })
 

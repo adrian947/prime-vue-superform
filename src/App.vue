@@ -1,24 +1,19 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import Navbar from './components/Navbar.vue'
+import MainLayout from './layouts/MainLayout.vue'
 </script>
 
 <template>
-  <div id="app">
-    <Navbar />
-    <main class="main-content">
-      <RouterView />
-    </main>
-  </div>
+	<MainLayout />
 </template>
 
 <style>
-#app {
-  min-height: 100vh;
-  background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
-}
-
-.main-content {
-  min-height: calc(100vh - 70px);
+/* Global styles */
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: 'Poppins', sans-serif;
+	background-color: #f8fafc;
 }
 </style>

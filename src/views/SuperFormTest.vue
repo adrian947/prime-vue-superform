@@ -329,8 +329,7 @@ const handleFormChange = (data: any) => {
 		</div>
 
 		<SuperForm ref="superForm" :fields="formFields" :initialData="initialFormData" :newFormData="false"
-			@submit="handleFormSubmit" @change="handleFormChange" buttonSubmitLabel="Enviar desde el padre"
-			buttonSubmitClass="w-100">
+			@submit="handleFormSubmit" @change="handleFormChange" buttonSubmitLabel="Enviar desde el padre">
 			<template #texto>
 				<div class="custom-slot">
 					<h3>Un texto de slot</h3>

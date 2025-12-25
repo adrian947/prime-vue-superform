@@ -12,6 +12,7 @@ import Password from 'primevue/password'
 import Button from 'primevue/button'
 import InputGroup from 'primevue/inputgroup'
 import FileUpload from 'primevue/fileupload'
+import BaseButton from '../components/BaseButton.vue'
 
 // Props
 interface FieldConfig {
@@ -435,7 +436,8 @@ const getGridClass = (cols?: number) => {
 
 			<!-- Submit Button -->
 			<div class="form-actions">
-				<Button type="submit" :label="buttonSubmitLabel" :class="buttonSubmitClass" severity="success"
+
+				<BaseButton type="submit" :label="buttonSubmitLabel" :class="buttonSubmitClass" rounded fluid
 					:disabled="!isFormValid" />
 			</div>
 		</form>

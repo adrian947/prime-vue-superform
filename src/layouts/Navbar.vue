@@ -29,7 +29,7 @@ const isActive = (path: string) => {
 			<div class="navbar-brand">
 				<router-link to="/" class="brand-link">
 					<i class="pi pi-bolt brand-icon"></i>
-					<span class="brand-text">Vue SuperForm</span>
+					<span class="brand-text">Smartclaims</span>
 				</router-link>
 			</div>
 
@@ -39,6 +39,10 @@ const isActive = (path: string) => {
 					:class="{ active: isActive(item.path) }">
 					<i :class="item.icon"></i>
 					<span>{{ item.name }}</span>
+				</router-link>
+				<router-link to="/table" class="nav-link">
+					<i class="pi pi-table"></i>
+					<span>Table Demo</span>
 				</router-link>
 			</div>
 
