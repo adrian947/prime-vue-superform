@@ -5,7 +5,7 @@ import Lara from '@primeuix/themes/lara'
 export const MyTheme = definePreset(Lara, {
   semantic: {
     primary: {
-      50:  '#f3e8ff',
+      50: '#f3e8ff',
       100: '#e9d5ff',
       200: '#d8b4fe',
       300: '#c084fc',

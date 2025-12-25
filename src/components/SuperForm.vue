@@ -13,6 +13,7 @@ import Button from 'primevue/button'
 import InputGroup from 'primevue/inputgroup'
 import FileUpload from 'primevue/fileupload'
 import BaseButton from '../components/BaseButton.vue'
+import { InputSwitch } from 'primevue'
 
 // Props
 interface FieldConfig {
@@ -61,8 +62,8 @@ const props = withDefaults(defineProps<Props>(), {
 
 // Emits
 const emit = defineEmits<{
-	submit: [data: { form: Record<string, any>, errors: Record<string, string> }]
-	change: [data: { form: Record<string, any>, field: string, value: any }]
+	submit: [data: { form: Record<string, any>; errors: Record<string, string> }]
+	change: [data: { form: Record<string, any>; field: string; value: any }]
 }>()
 
 // Reactive form data
@@ -84,12 +85,17 @@ const areaCodes = ref([
 // Initialize form data
 const initializeFormData = () => {
 	if (props.initialData) {
-		Object.keys(props.initialData).forEach(key => {
+		Object.keys(props.initialData).forEach((key) => {
 			const value = props.initialData![key]
 
 			// Check if this field is a date type and value is a string
 			const fieldConfig = fieldsConfig.value[key]
-			if (fieldConfig && fieldConfig.type === 'date' && typeof value === 'string' && value) {
+			if (
+				fieldConfig &&
+				fieldConfig.type === 'date' &&
+				typeof value === 'string' &&
+				value
+			) {
 				// Convert string to Date object
 				formData[key] = new Date(value)
 			} else {
@@ -99,7 +105,7 @@ const initializeFormData = () => {
 	}
 
 	// Initialize phone area code if not set
-	Object.keys(fieldsConfig.value).forEach(key => {
+	Object.keys(fieldsConfig.value).forEach((key) => {
 		const field = fieldsConfig.value[key]
 		if (field?.type === 'phone' && !formData[`${key}_codigo_area`]) {
 			formData[`${key}_codigo_area`] = '+54'
@@ -119,7 +125,7 @@ const visibleFields = computed(() => {
 // Form validation state
 const isFormValid = computed(() => {
 	// Check if there are any active errors
-	const hasErrors = Object.values(errors).some(error => error !== '')
+	const hasErrors = Object.values(errors).some((error) => error !== '')
 	if (hasErrors) return false
 
 	// Check if all required non-hidden fields have values
@@ -131,8 +137,12 @@ const isFormValid = computed(() => {
 		if (required) {
 			const value = formData[key]
 			// Strict check for empty values
-			if (value === null || value === undefined || value === '' ||
-				(Array.isArray(value) && value.length === 0)) {
+			if (
+				value === null ||
+				value === undefined ||
+				value === '' ||
+				(Array.isArray(value) && value.length === 0)
+			) {
 				return false
 			}
 		}
@@ -149,13 +159,13 @@ const handleBlur = async (fieldKey: string) => {
 const processFormData = (data: Record<string, any>) => {
 	const processed = { ...data }
 
-	Object.keys(fieldsConfig.value).forEach(key => {
+	Object.keys(fieldsConfig.value).forEach((key) => {
 		const field = fieldsConfig.value[key]
 		const val = processed[key]
 
 		if (field?.type === 'date' && val instanceof Date) {
 			// Adjust for timezone to get local string
-			const formated = new Date(val.getTime() - (val.getTimezoneOffset() * 60000))
+			const formated = new Date(val.getTime() - val.getTimezoneOffset() * 60000)
 				.toISOString()
 				.slice(0, 19)
 				.replace('T', ' ')
@@ -176,8 +186,12 @@ const validateField = (fieldKey: string): boolean => {
 
 	// Required validation
 	if (field.required || validations.required) {
-		if (value === null || value === undefined || value === '' ||
-			(Array.isArray(value) && value.length === 0)) {
+		if (
+			value === null ||
+			value === undefined ||
+			value === '' ||
+			(Array.isArray(value) && value.length === 0)
+		) {
 			errors[fieldKey] = `${field.title || fieldKey} es requerido`
 			return false
 		}
@@ -194,7 +208,8 @@ const validateField = (fieldKey: string): boolean => {
 	// Min length validation
 	if (validations.min && value) {
 		if (value.length < validations.min) {
-			errors[fieldKey] = `${field.title || fieldKey} debe tener al menos ${validations.min} caracteres`
+			errors[fieldKey] =
+				`${field.title || fieldKey} debe tener al menos ${validations.min} caracteres`
 			return false
 		}
 	}
@@ -202,7 +217,8 @@ const validateField = (fieldKey: string): boolean => {
 	// Max length validation
 	if (validations.max && value) {
 		if (value.length > validations.max) {
-			errors[fieldKey] = `${field.title || fieldKey} no puede exceder ${validations.max} caracteres`
+			errors[fieldKey] =
+				`${field.title || fieldKey} no puede exceder ${validations.max} caracteres`
 			return false
 		}
 	}
@@ -220,19 +236,27 @@ const validationState = (fieldKey: string) => {
 }
 
 // Watch for changes
-watch(formData, (newVal) => {
-	const processedForm = processFormData(newVal)
-	Object.keys(newVal).forEach(key => {
-		emit('change', { form: processedForm, field: key, value: processedForm[key] })
-	})
-}, { deep: true })
+watch(
+	formData,
+	(newVal) => {
+		const processedForm = processFormData(newVal)
+		Object.keys(newVal).forEach((key) => {
+			emit('change', {
+				form: processedForm,
+				field: key,
+				value: processedForm[key]
+			})
+		})
+	},
+	{ deep: true }
+)
 
 // Submit handler
 const handleSubmit = () => {
 	let isValid = true
 
 	// Validate all required fields
-	Object.keys(fieldsConfig.value).forEach(key => {
+	Object.keys(fieldsConfig.value).forEach((key) => {
 		if (!validateField(key)) {
 			isValid = false
 		}
@@ -247,15 +271,20 @@ const handleSubmit = () => {
 
 // Exposed methods
 const updateFormData = (data: Record<string, any>) => {
-	Object.keys(data).forEach(key => {
+	Object.keys(data).forEach((key) => {
 		formData[key] = data[key]
 	})
 }
 
-const updateFormFields = (fieldsUpdate: Record<string, Partial<FieldConfig>>) => {
-	Object.keys(fieldsUpdate).forEach(key => {
+const updateFormFields = (
+	fieldsUpdate: Record<string, Partial<FieldConfig>>
+) => {
+	Object.keys(fieldsUpdate).forEach((key) => {
 		if (fieldsConfig.value[key]) {
-			fieldsConfig.value[key] = { ...fieldsConfig.value[key], ...fieldsUpdate[key] }
+			fieldsConfig.value[key] = {
+				...fieldsConfig.value[key],
+				...fieldsUpdate[key]
+			}
 		}
 	})
 }
@@ -340,14 +369,19 @@ const getGridClass = (cols?: number) => {
 							<div v-else-if="field.type === 'date' && field.withTime" class="date-time-group">
 								<DatePicker :id="field.key" v-model="formData[field.key]"
 									:placeholder="field.placeholder || 'dd/mm/yyyy'" :disabled="field.inputDisabled"
-									:class="['date-input', field.classInput, { 'p-invalid': errors[field.key] }]"
-									:maxDate="field.limitMaxDate" dateFormat="dd/mm/yy" @blur="handleBlur(field.key)"
-									showIcon iconDisplay="input" />
+									:class="[
+										'date-input',
+										field.classInput,
+										{ 'p-invalid': errors[field.key] }
+									]" :maxDate="field.limitMaxDate" dateFormat="dd/mm/yy" @blur="handleBlur(field.key)" showIcon
+									iconDisplay="input" />
 								<DatePicker :id="`${field.key}_time`" v-model="formData[field.key]"
 									:placeholder="'HH:mm'" :disabled="field.inputDisabled"
 									:class="['time-input', field.classInput]" timeOnly hourFormat="24"
 									iconDisplay="input" showIcon>
-
+									<template #inputicon="{ class: iconClass, clickCallback }">
+										<i :class="['pi pi-clock', iconClass]" @click="clickCallback" />
+									</template>
 								</DatePicker>
 							</div>
 
@@ -382,8 +416,11 @@ const getGridClass = (cols?: number) => {
 									optionLabel="name" optionValue="code" class="phone-area-code" />
 								<InputMask :id="field.key" v-model="formData[field.key]" mask="999-999-9999"
 									:placeholder="field.placeholder || '123-456-7890'" :disabled="field.inputDisabled"
-									:class="['phone-input', field.classInput, { 'p-invalid': errors[field.key] }]"
-									@blur="handleBlur(field.key)" />
+									:class="[
+										'phone-input',
+										field.classInput,
+										{ 'p-invalid': errors[field.key] }
+									]" @blur="handleBlur(field.key)" />
 							</InputGroup>
 
 							<!-- Checkbox -->
@@ -394,10 +431,21 @@ const getGridClass = (cols?: number) => {
 								}}</label>
 							</div>
 
+							<!-- Switch / Toggle -->
+							<div v-else-if="field.type === 'switch'" class="switch-wrapper">
+								<InputSwitch :inputId="field.key" v-model="formData[field.key]"
+									:disabled="field.inputDisabled" :class="field.classInput" />
+
+								<label v-if="field.title" :for="field.key" class="switch-label">
+									{{ field.title }}
+								</label>
+							</div>
+
+
 							<!-- Button Group -->
 							<div v-else-if="field.type === 'btn_group'" class="btn-group-wrapper">
 								<Button v-for="option in field.options" :key="option.value" :label="option.text"
-									:class="{ 'active': formData[field.key] === option.value }"
+									:class="{ active: formData[field.key] === option.value }"
 									@click="formData[field.key] = option.value" :disabled="field.inputDisabled"
 									outlined />
 							</div>
@@ -405,11 +453,11 @@ const getGridClass = (cols?: number) => {
 							<!-- File Upload -->
 							<FileUpload v-else-if="field.type === 'file'" :id="field.key" :multiple="field.multiple"
 								:disabled="field.inputDisabled" :class="field.classInput"
-								@select="(e) => formData[field.key] = e.files" />
+								@select="(e) => (formData[field.key] = e.files)" />
 
 							<!-- Currency Input (dinero) -->
 							<InputNumber v-else-if="field.type === 'dinero'" :id="field.key"
-								v-model="formData[field.key]" mode="currency" currency="USD" locale="es-AR"
+								v-model="formData[field.key]" mode="currency" currency="USD" locale="en-US"
 								:placeholder="field.placeholder" :disabled="field.inputDisabled"
 								:class="[field.classInput, { 'p-invalid': errors[field.key] }]"
 								@blur="handleBlur(field.key)" />
@@ -436,7 +484,6 @@ const getGridClass = (cols?: number) => {
 
 			<!-- Submit Button -->
 			<div class="form-actions">
-
 				<BaseButton type="submit" :label="buttonSubmitLabel" :class="buttonSubmitClass" rounded fluid
 					:disabled="!isFormValid" />
 			</div>
@@ -600,6 +647,19 @@ const getGridClass = (cols?: number) => {
 	margin: 0 !important;
 }
 
+.switch-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.switch-label {
+	font-size: 0.875rem;
+	color: #334155;
+	cursor: pointer;
+}
+
+
 /* Button group */
 /* Button group */
 .btn-group-wrapper {
@@ -619,7 +679,7 @@ const getGridClass = (cols?: number) => {
 	flex: 1;
 	border-radius: 50px !important;
 	border: none !important;
-	background-color: #E0E7FF !important;
+	background-color: #e0e7ff !important;
 	/* Light indigo/lavender for unselected */
 	color: #374151 !important;
 	/* Dark gray text */
@@ -634,12 +694,12 @@ const getGridClass = (cols?: number) => {
 }
 
 .btn-group-wrapper :deep(.p-button:hover) {
-	background-color: #C7D2FE !important;
+	background-color: #c7d2fe !important;
 	/* Slightly darker on hover */
 }
 
 .btn-group-wrapper :deep(.p-button.active) {
-	background-color: #7435FF !important;
+	background-color: #7435ff !important;
 	/* Primary purple */
 	color: white !important;
 }
@@ -700,7 +760,7 @@ const getGridClass = (cols?: number) => {
 }
 
 @media (max-width: 768px) {
-	.row>div[class*="col-"] {
+	.row>div[class*='col-'] {
 		width: 100%;
 	}
 }

@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: HomeView
     },
     {
       path: '/about',
@@ -15,7 +15,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      component: () => import('../views/AboutView.vue')
     },
     {
       path: '/form',
@@ -23,29 +23,34 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/SuperFormTest.vue'),
+      component: () => import('../views/SuperFormTest.vue')
     },
     {
       path: '/level1',
       name: 'level1',
-      component: () => import('../views/example/Level1.vue'),
+      component: () => import('../views/example/Level1.vue')
     },
     {
       path: '/level1/level2',
       name: 'level2',
-      component: () => import('../views/example/Level2.vue'),
+      component: () => import('../views/example/Level2.vue')
     },
     {
       path: '/level1/level2/level3',
       name: 'level3',
-      component: () => import('../views/example/Level3.vue'),
+      component: () => import('../views/example/Level3.vue')
     },
     {
       path: '/table',
       name: 'table',
-      component: () => import('../views/SuperTableTest.vue'),
+      component: () => import('../views/SuperTableTest.vue')
     },
-  ],
+    {
+      path: '/feedback',
+      name: 'feedback',
+      component: () => import('../views/FeedbackTester.vue')
+    }
+  ]
 })
 
 export default router

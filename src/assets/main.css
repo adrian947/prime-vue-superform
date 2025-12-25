@@ -1,8 +1,7 @@
-@import "./base.css";
+@import './base.css';
 @import 'primeicons/primeicons.css';
-@import "tailwindcss";
-@import "tailwindcss-primeui";
-
+@import 'tailwindcss';
+@import 'tailwindcss-primeui';
 
 /* main.css */
 

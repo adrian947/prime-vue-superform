@@ -1,16 +1,17 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="about-container">
     <div class="about-content">
       <h1>Acerca de SuperForm</h1>
-      
+
       <div class="info-section">
         <h2>¿Qué es SuperForm?</h2>
         <p>
-          SuperForm es un componente Vue 3 dinámico y reutilizable que simplifica la creación de formularios complejos.
-          Con una configuración basada en objetos, puedes crear formularios completos sin escribir HTML repetitivo.
+          SuperForm es un componente Vue 3 dinámico y reutilizable que
+          simplifica la creación de formularios complejos. Con una configuración
+          basada en objetos, puedes crear formularios completos sin escribir
+          HTML repetitivo.
         </p>
       </div>
 
@@ -19,31 +20,39 @@
         <ul class="features-list">
           <li>
             <i class="pi pi-check"></i>
-            <strong>15+ tipos de inputs</strong>: text, email, password, number, date, select, multiselect, phone, checkbox, file, currency, percentage y más
+            <strong>15+ tipos de inputs</strong>: text, email, password, number,
+            date, select, multiselect, phone, checkbox, file, currency,
+            percentage y más
           </li>
           <li>
             <i class="pi pi-check"></i>
-            <strong>Sistema de validación</strong>: Validaciones integradas (required, pattern, min, max) con mensajes de error personalizables
+            <strong>Sistema de validación</strong>: Validaciones integradas
+            (required, pattern, min, max) con mensajes de error personalizables
           </li>
           <li>
             <i class="pi pi-check"></i>
-            <strong>Actualización dinámica</strong>: Actualiza campos y valores desde el componente padre en tiempo real
+            <strong>Actualización dinámica</strong>: Actualiza campos y valores
+            desde el componente padre en tiempo real
           </li>
           <li>
             <i class="pi pi-check"></i>
-            <strong>Eventos personalizados</strong>: @submit y @change para tracking completo del formulario
+            <strong>Eventos personalizados</strong>: @submit y @change para
+            tracking completo del formulario
           </li>
           <li>
             <i class="pi pi-check"></i>
-            <strong>Slots personalizados</strong>: Soporte para contenido personalizado con slots nombrados y scoped
+            <strong>Slots personalizados</strong>: Soporte para contenido
+            personalizado con slots nombrados y scoped
           </li>
           <li>
             <i class="pi pi-check"></i>
-            <strong>Grid responsive</strong>: Sistema de 12 columnas para layouts flexibles
+            <strong>Grid responsive</strong>: Sistema de 12 columnas para
+            layouts flexibles
           </li>
           <li>
             <i class="pi pi-check"></i>
-            <strong>TypeScript</strong>: Completamente tipado para mejor experiencia de desarrollo
+            <strong>TypeScript</strong>: Completamente tipado para mejor
+            experiencia de desarrollo
           </li>
         </ul>
       </div>
@@ -99,7 +108,7 @@
   color: #2c3e50;
   margin-bottom: 2rem;
   text-align: center;
-  background: linear-gradient(135deg, #7435FF 0%, #5e2acc 100%);
+  background: linear-gradient(135deg, #7435ff 0%, #5e2acc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -115,7 +124,7 @@
 
 .info-section h2 {
   font-size: 1.5rem;
-  color: #7435FF;
+  color: #7435ff;
   margin-bottom: 1rem;
 }
 
@@ -140,7 +149,7 @@
 }
 
 .features-list i {
-  color: #7435FF;
+  color: #7435ff;
   font-size: 1.2rem;
   margin-top: 0.2rem;
 }
@@ -150,7 +159,7 @@
   padding: 1.5rem;
   border-radius: 8px;
   overflow-x: auto;
-  border-left: 4px solid #7435FF;
+  border-left: 4px solid #7435ff;
 }
 
 .code-block code {
@@ -177,14 +186,14 @@
 }
 
 .tech-card:hover {
-  border-color: #7435FF;
+  border-color: #7435ff;
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(116, 53, 255, 0.15);
 }
 
 .tech-icon {
   font-size: 2.5rem;
-  color: #7435FF;
+  color: #7435ff;
   margin-bottom: 0.5rem;
 }
 

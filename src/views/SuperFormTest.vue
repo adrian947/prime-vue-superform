@@ -18,8 +18,8 @@ const formFields = ref({
 		hidden: false,
 		cols: 6,
 		validations: {
-			required: true,
-		},
+			required: true
+		}
 	},
 	negocio_id: {
 		title: 'Negocio',
@@ -28,7 +28,7 @@ const formFields = ref({
 		cols: 6,
 		options: [
 			{ nombre: 'Nombre1', id: 1 },
-			{ nombre: 'Nombre2', id: 2 },
+			{ nombre: 'Nombre2', id: 2 }
 		],
 		multiple: false,
 		required: true,
@@ -36,8 +36,8 @@ const formFields = ref({
 		inputDisabled: false,
 		hidden: false,
 		validations: {
-			required: true,
-		},
+			required: true
+		}
 	},
 	email: {
 		title: 'Email',
@@ -48,9 +48,9 @@ const formFields = ref({
 		hidden: false,
 		validations: {
 			required: false,
-			pattern: new RegExp('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$'),
+			pattern: new RegExp('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$')
 		},
-		cols: 6,
+		cols: 6
 	},
 	password: {
 		title: 'Contraseña',
@@ -59,9 +59,9 @@ const formFields = ref({
 		inputDisabled: false,
 		hidden: false,
 		validations: {
-			required: false,
+			required: false
 		},
-		cols: 6,
+		cols: 6
 	},
 	bio: {
 		title: 'Biografía',
@@ -69,23 +69,23 @@ const formFields = ref({
 		placeholder: 'Escribe sobre ti',
 		required: false,
 		hidden: false,
-		inputDisabled: false,
+		inputDisabled: false
 	},
 	numero: {
 		title: 'Numero',
 		type: 'number',
 		placeholder: 'Escribe tu número',
 		required: false,
-		inputDisabled: true,
+		inputDisabled: true
 	},
 	telefono: {
 		title: 'Telefono',
 		type: 'phone',
 		placeholder: 'Teléfono',
-		required: false,
+		required: true,
 		hidden: false,
 		inputDisabled: false,
-		cols: 6,
+		cols: 6
 	},
 	posibilidad_recobro: {
 		title: 'Button group',
@@ -98,8 +98,8 @@ const formFields = ref({
 		options: [
 			{ text: 'Si', value: 'Si' },
 			{ text: 'No', value: 'No' },
-			{ text: 'Sin especificar', value: 'Sin especificar' },
-		],
+			{ text: 'Sin especificar', value: 'Sin especificar' }
+		]
 	},
 	languages: {
 		title: 'Lenguajes (multiselect)',
@@ -111,14 +111,14 @@ const formFields = ref({
 		multiple: true,
 		required: false,
 		hidden: false,
-		inputDisabled: false,
+		inputDisabled: false
 	},
 	comun: {
 		title: 'Selector comun',
 		type: 'multiselect',
 		options: [
 			{ id: 'Vue.js', label: 'JavaScript' },
-			{ id: 'Sinatra', label: 'Ruby' },
+			{ id: 'Sinatra', label: 'Ruby' }
 		],
 		trackBy: 'id',
 		label: 'label',
@@ -126,20 +126,27 @@ const formFields = ref({
 		multiple: false,
 		required: false,
 		hidden: false,
-		inputDisabled: false,
+		inputDisabled: false
 	},
 	importData: {
 		placeholder: 'Inserte su csv de vehiculos',
 		title: 'Importar vehiculo',
 		inputDisabled: false,
-		multiple: false,
+		multiple: true,
 		type: 'file',
 		required: false,
-		hidden: false,
+		hidden: false
 	},
 	texto: {
-		type: "slot",
-		cols: 12,
+		type: 'slot',
+		cols: 12
+	},
+	switch: {
+		title: 'Switch',
+		type: 'switch',
+		required: false,
+		hidden: false,
+		inputDisabled: false
 	},
 
 	foto: {
@@ -151,26 +158,23 @@ const formFields = ref({
 		ocultarOpcional: true,
 		hidden: false,
 
-		inputDisabled: false,
+		inputDisabled: false
 	},
 	monto_gasto: {
 		title: 'Input dinero',
 		type: 'dinero',
-
-
-		required: true,
+		required: false,
 		hidden: false,
-		inputDisabled: false,
+		inputDisabled: false
 	},
 	incapacidad_valorada: {
 		title: 'Input porcentaje',
 		type: 'porcentaje',
-
 		key: 'incapacidad_valorada',
 		cols: 6,
-		required: true,
+		required: false,
 		hidden: false,
-		inputDisabled: false,
+		inputDisabled: false
 	},
 	fecha_accidente: {
 		title: 'Fecha de accidente',
@@ -182,7 +186,7 @@ const formFields = ref({
 		hidden: false,
 		keyHour: 'audiencia_hora',
 		inputDisabled: false,
-		cols: 6,
+		cols: 6
 	},
 	fecha_hola: {
 		title: 'Fecha de hola',
@@ -192,15 +196,15 @@ const formFields = ref({
 		withTime: true,
 		hidden: false,
 		keyHour: 'audiencia_hora',
-		inputDisabled: false,
+		inputDisabled: false
 	},
 	fecha_chau: {
 		title: 'Fecha de chau',
 		type: 'date',
 		required: false,
 		hidden: false,
-		inputDisabled: false,
-	},
+		inputDisabled: false
+	}
 })
 
 // Initial form data
@@ -217,7 +221,7 @@ const initialFormData = ref({
 	fecha_accidente: '2025-04-24 14:14:00',
 	fecha_hola: null,
 	fecha_chau: null,
-	damnificado_direccion: '',
+	damnificado_direccion: ''
 })
 
 // Lifecycle
@@ -230,9 +234,9 @@ onMounted(async () => {
 				{ id: 'Sinatra', label: 'Ruby' },
 				{ id: 'Laravel', label: 'PHP' },
 				{ id: 'Phoenix', label: 'Elixir' },
-				{ id: 'Django', label: 'Python' },
-			],
-		},
+				{ id: 'Django', label: 'Python' }
+			]
+		}
 	})
 })
 
@@ -249,22 +253,22 @@ watch(
 				email: 'nuevo1234@email.com',
 				monto_gasto: '10,4',
 				fecha_hola: '2025-04-30 14:31',
-				fecha_chau: '2025-04-30 14:31',
+				fecha_chau: '2025-04-30 14:31'
 			})
 			superForm.value?.updateFormFields({
 				languages: {
 					options: [
 						{ id: 'Vue.js', label: 'Vue actualizado' },
-						{ id: 'Next.js', label: 'Next actualizado' },
-					],
+						{ id: 'Next.js', label: 'Next actualizado' }
+					]
 				},
 				email: {
 					inputDisabled: true,
-					placeholder: 'Este email está deshabilitado',
+					placeholder: 'Este email está deshabilitado'
 				},
 				telefono: {
-					hidden: true,
-				},
+					hidden: true
+				}
 			})
 		}
 	},
@@ -288,18 +292,18 @@ watch(
 		if (!newVal) return
 		superForm.value?.updateFormData({
 			name: '',
-			numero: '123123',
+			numero: '123123'
 		})
 		superForm.value?.updateFormFields({
 			languages: {
 				options: [
 					{ id: 'Vue.js', label: 'Vue actualizado' },
-					{ id: 'Next.js', label: 'Next actualizado' },
-				],
+					{ id: 'Next.js', label: 'Next actualizado' }
+				]
 			},
 			numero: {
-				inputDisabled: false,
-			},
+				inputDisabled: false
+			}
 		})
 	}
 )
@@ -312,7 +316,7 @@ const handleFormSubmit = (data: any) => {
 		name: '',
 		monto_gasto: '',
 		fecha_hola: null,
-		fecha_chau: null,
+		fecha_chau: null
 	})
 }
 
@@ -381,7 +385,7 @@ const handleFormChange = (data: any) => {
 }
 
 .custom-slot h3 {
-	color: #7435FF;
+	color: #7435ff;
 	margin-bottom: 0.5rem;
 }
 

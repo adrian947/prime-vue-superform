@@ -7,7 +7,9 @@ import router from './router'
 import PrimeVue from 'primevue/config'
 import Lara from '@primeuix/themes/lara'
 
-import ToastService from 'primevue/toastservice' // 🔴 FALTABA
+import ToastService from 'primevue/toastservice'
+import ConfirmationService from 'primevue/confirmationservice'
+import DialogService from 'primevue/dialogservice'
 import Toast from 'primevue/toast'
 import SplitButton from 'primevue/splitbutton'
 import { MyTheme } from './theme'
@@ -21,13 +23,15 @@ app.use(PrimeVue, {
       cssLayer: {
         name: 'primevue',
         order: 'theme, base, primevue'
-	},
-	darkModeSelector: false || 'none',
+      },
+      darkModeSelector: false || 'none'
     }
   }
 })
 
-app.use(ToastService) // 🔴 OBLIGATORIO
+app.use(ToastService)
+app.use(ConfirmationService)
+app.use(DialogService)
 app.use(router)
 
 app.component('Toast', Toast)

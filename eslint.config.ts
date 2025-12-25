@@ -18,5 +18,31 @@ export default defineConfigWithVueTs(
 
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
-  skipFormatting,
+  {
+    rules: {
+      'vue/max-attributes-per-line': [
+        'error',
+        {
+          singleline: 1,
+          multiline: 1
+        }
+      ],
+      'vue/first-attribute-linebreak': [
+        'error',
+        {
+          singleline: 'beside',
+          multiline: 'below'
+        }
+      ],
+      'vue/html-indent': ['error', 2],
+      'vue/html-closing-bracket-newline': [
+        'error',
+        {
+          singleline: 'never',
+          multiline: 'always'
+        }
+      ]
+    }
+  },
+  skipFormatting
 )
